@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Portfolio Personnel 2025
 
-## Getting Started
+Bienvenue sur mon portfolio personnel, une application web moderne développée avec Next.js 16.0.1 et React 19. Ce projet met en valeur mes compétences en développement web et mon parcours professionnel.
 
-First, run the development server:
+## 🚀 Fonctionnalités
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Interface utilisateur réactive et moderne
+- Animations fluides avec Framer Motion
+- Thème sombre/clair
+- Optimisation des performances
+- Intégration avec Tailwind CSS pour le style
+
+## 🛠️ Technologies utilisées
+
+- **Framework** : Next.js 16.0.1
+- **UI** : React 19
+- **Styling** : Tailwind CSS
+- **Outils de développement** :
+  - ESLint pour le linting
+  - PostCSS pour le traitement CSS
+  - Babel pour la compilation
+
+## 🏃‍♂️ Pour commencer
+
+### Prérequis
+
+- Node.js 18.0 ou supérieur
+- npm ou yarn
+
+### Installation
+
+1. Clonez le dépôt :
+   ```bash
+   git clone [URL_DU_REPO]
+   cd portfolio-2025
+   ```
+
+2. Installez les dépendances :
+   ```bash
+   npm install
+   # ou
+   yarn install
+   ```
+
+3. Lancez le serveur de développement :
+   ```bash
+   npm run dev
+   # ou
+   yarn dev
+   ```
+
+4. Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
+
+## 🏗️ Structure du projet
+
+```
+src/
+├── app/           # Pages de l'application
+├── components/    # Composants réutilisables
+├── contexts/      # Contextes React
+├── hooks/         # Hooks personnalisés
+└── lib/           # Utilitaires et configurations
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📦 Scripts disponibles
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- `npm run dev` - Lance le serveur de développement
+- `npm run build` - Construit l'application pour la production
+- `npm start` - Lance le serveur de production
+- `npm run lint` - Exécute le linter
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌍 Déploiement
 
-## Learn More
+Ce projet peut être déployé sur [Vercel](https://vercel.com), la plateforme optimisée pour les applications Next.js.
 
-To learn more about Next.js, take a look at the following resources:
+[![Déployer avec Vercel](https://vercel.com/button)](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 Licence
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
-## Deploy on Vercel
+## 🤝 Contribution
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou une pull request.
