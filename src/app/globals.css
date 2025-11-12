@@ -5,12 +5,23 @@
   --foreground: #171717;
   --wheel-size: 200px;
   --dark-gradient: linear-gradient(212deg, #202022 38%, #434349 100%);
+  --wheel-button-size: 72px;
+  --wheel-button-color: #434349;
+  --wheel-button-border-color: #202022;
+  --wheel-button-hover-color: #58585e;
+  --wheel-buttons-color: #d2d2d2;
+  --wheel-buttons-hover-color: #fff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-dark-gradient: var(--dark-gradient);
+  --color-wheel-button: var(--wheel-button-color);
+  --color-wheel-button-border-color: var(--wheel-button-border-color);
+  --color-wheel-button-hover: var(--wheel-button-hover-color);
+  --color-wheel-buttons-color: var(--wheel-buttons-color);
+  --color-wheel-buttons-hover-color: var(--wheel-buttons-hover-color);
 }
 
 body {
