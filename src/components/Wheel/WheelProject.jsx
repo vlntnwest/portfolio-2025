@@ -19,7 +19,7 @@ const WheelProject = ({ className, style }) => {
       </div>
       <div className="flex justify-between items-center">
         <button className="ml-2 cursor-pointer pointer-events-auto">
-          <div className="p-1 h-6">
+          <div className="p-1 h-5">
             <Nav
               name="Prev"
               className="h-full fill-wheel-buttons-color rotate-180 hover:fill-wheel-buttons-hover-color transition"
@@ -27,7 +27,7 @@ const WheelProject = ({ className, style }) => {
           </div>
         </button>
         <button className="mr-2 cursor-pointer pointer-events-auto">
-          <div className="p-1 h-6">
+          <div className="p-1 h-5">
             <Nav
               name="Next"
               className="h-full fill-wheel-buttons-color hover:fill-wheel-buttons-hover-color transition"

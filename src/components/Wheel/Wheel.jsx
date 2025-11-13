@@ -6,8 +6,9 @@ import WheelShadow from "./WheelShadow";
 import { motion, useReducedMotion } from "framer-motion";
 import { useWheelContext } from "../../contexts/WheelContext";
 import WheelProject from "./WheelProject";
-import ProjectMenuBtn from "../ui/buttons/ProjectMenuBtn";
-import MenuBtn from "../ui/buttons/MenuBtn";
+import IconBtn from "../ui/buttons/IconBtn";
+import Albums from "../SVG/Albums";
+import MenuIcon from "../SVG/MenuIcon";
 
 const wheelVariants = {
   home: {
@@ -63,7 +64,7 @@ const Wheel = () => {
   })();
 
   return (
-    <section className="fixed bottom-0 left-0 right-0 flex items-center justify-center pointer-events-none">
+    <section className="absolute bottom-0 left-0 right-0 flex items-center justify-center mb-4">
       <div className="absolute left-1/2 -top-16 pointer-events-none">
         <div className="-translate-x-1/2 absolute top-0 left-0 mb-2 pointer-events-auto">
           <motion.div
@@ -82,14 +83,24 @@ const Wheel = () => {
         </div>
       </div>
 
-      {mode === "projects" && <ProjectMenuBtn />}
+      {mode === "projects" && (
+        <IconBtn
+          size={6}
+          onClick={() => console.log("click")}
+          initialTransform="translateX(200px)"
+        >
+          <Albums
+            name="Projects icon"
+            className="h-full w-full fill-wheel-buttons-color hover:fill-wheel-buttons-hover-color transition"
+          />
+        </IconBtn>
+      )}
 
       <motion.div
-        className="relative background-dark-gradient flex items-center justify-center overflow-hidden select-none touch-none z-10"
+        className="relative background-dark-gradient flex items-center justify-center overflow-hidden select-none touch-none z-10 mx-2"
         variants={wheelVariants}
         initial={modeVariant}
         animate={modeVariant}
-        layout
         style={{
           width: "200px",
           height: "200px",
@@ -123,7 +134,18 @@ const Wheel = () => {
           }
         />
       </motion.div>
-      {mode === "projects" && <MenuBtn />}
+      {mode === "projects" && (
+        <IconBtn
+          size={6}
+          onClick={() => console.log("click")}
+          initialTransform="translateX(-200px)"
+        >
+          <MenuIcon
+            name="Menu icon"
+            className="h-full w-full fill-wheel-buttons-color hover:fill-wheel-buttons-hover-color transition"
+          />
+        </IconBtn>
+      )}
     </section>
   );
 };
