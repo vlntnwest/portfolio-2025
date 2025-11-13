@@ -1,8 +1,10 @@
 import Play from "@/components/SVG/Play";
 import Nav from "../SVG/Nav";
 import { motion } from "framer-motion";
+import { useWheelContext } from "../../contexts/WheelContext";
 
-const WheelButtons = ({ toggleMenu, ref }) => {
+const WheelButtons = () => {
+  const { toggleMenu } = useWheelContext();
   return (
     <>
       <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between items-center pointer-events-none">
@@ -10,7 +12,6 @@ const WheelButtons = ({ toggleMenu, ref }) => {
           className="mt-2 cursor-pointer pointer-events-auto"
           onClick={toggleMenu}
           whileTap={{ y: 1 }}
-          ref={ref}
         >
           <div>
             <span className="uppercase text-wheel-buttons-color text-sm/6 font-medium p-1 hover:text-wheel-buttons-hover-color transition">

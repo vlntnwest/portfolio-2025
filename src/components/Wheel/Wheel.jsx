@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useWheelContext } from "../../contexts/WheelContext";
 
 const Wheel = () => {
-  const { mode, isMenuOpen, toggleMenu } = useWheelContext();
+  const { mode, isMenuOpen } = useWheelContext();
 
   return (
     <section className="fixed bottom-0 left-0 right-0 flex items-center justify-center">
@@ -37,7 +37,7 @@ const Wheel = () => {
       </div>
       <div className="relative w-[200px] h-[200px] background-dark-gradient rounded-full flex items-center justify-center overflow-hidden select-none touch-none mix-blend-darken z-10">
         <WheelCentralButton /> <WheelShadow position={{ x: 0, y: 0 }} />
-        <WheelButtons toggleMenu={toggleMenu} />
+        <WheelButtons />
       </div>
     </section>
   );
