@@ -13,16 +13,17 @@ const wheelVariants = {
   home: {
     width: "200px",
     height: "200px",
-    borderRadius: "9999px", // fully round
+    borderRadius: "9999px",
     rotate: 0,
     scale: 1,
     translateY: "0px",
     transition: { type: "spring", stiffness: 200, damping: 20 },
   },
-  project: {
+  projects: {
     width: "auto",
     height: "auto",
     transition: { type: "spring", stiffness: 160, damping: 18 },
+    display: "block",
   },
 };
 
@@ -55,7 +56,7 @@ const Wheel = () => {
   const { mode, isMenuOpen, toggleMenu } = useWheelContext();
   const shouldReduceMotion = useReducedMotion();
 
-  const modeVariant = mode === "project" ? "project" : "home";
+  const modeVariant = mode === "projects" ? "projects" : "home";
 
   const menuState = (() => {
     return isMenuOpen ? "open" : "closed";
@@ -81,10 +82,10 @@ const Wheel = () => {
         </div>
       </div>
 
-      {mode === "project" && <ProjectMenuBtn />}
+      {mode === "projects" && <ProjectMenuBtn />}
 
       <motion.div
-        className="relative background-dark-gradient flex items-center justify-center overflow-hidden select-none touch-none mix-blend-darken z-10"
+        className="relative background-dark-gradient flex items-center justify-center overflow-hidden select-none touch-none z-10"
         variants={wheelVariants}
         initial={modeVariant}
         animate={modeVariant}
@@ -104,9 +105,25 @@ const Wheel = () => {
             <WheelButtons toggleMenu={toggleMenu} />
           </>
         )}
-        {mode === "project" && <WheelProject />}
+        <WheelProject
+          style={
+            mode !== "projects"
+              ? {
+                  opacity: 0,
+                  appearance: "none",
+                  pointerEvents: "none",
+                  translateY: "4rem",
+                }
+              : {
+                  opacity: 1,
+                  appearance: "auto",
+                  pointerEvents: "auto",
+                  translateY: "0rem",
+                }
+          }
+        />
       </motion.div>
-      {mode === "project" && <MenuBtn />}
+      {mode === "projects" && <MenuBtn />}
     </section>
   );
 };

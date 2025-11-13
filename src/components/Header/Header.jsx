@@ -2,10 +2,16 @@
 import { useWheelContext } from "../../contexts/WheelContext";
 
 const Header = () => {
-  const { changeMode } = useWheelContext();
+  const { changeMode, mode } = useWheelContext();
   return (
     <header>
-      <button onClick={() => changeMode("project")}>Change mode</button>
+      <button
+        onClick={() => {
+          mode === "home" ? changeMode("projects") : changeMode("home");
+        }}
+      >
+        Change mode
+      </button>
     </header>
   );
 };

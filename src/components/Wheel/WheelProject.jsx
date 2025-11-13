@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Nav from "../SVG/Nav";
-import Albums from "../SVG/Albums";
 
-const WheelProject = () => {
+const WheelProject = ({ className, style }) => {
   return (
-    <div className="px-4 py-2 flex gap-15">
+    <div className={`px-4 py-2 gap-15 flex ${className}`} style={style}>
       <div className="flex gap-2">
         <Image
           src="/assets/images/projects/pokey.png"
@@ -15,7 +14,7 @@ const WheelProject = () => {
         />
         <div>
           <h2 className="text-white text-sm/4 font-semibold mb-2">Pokey</h2>
-          <p className="text-white text-sm/4 ">Web -Branding</p>
+          <p className="text-white text-sm/4 text-nowrap">Web -Branding</p>
         </div>
       </div>
       <div className="flex justify-between items-center">
