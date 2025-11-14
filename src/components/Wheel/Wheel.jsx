@@ -97,7 +97,7 @@ const Wheel = () => {
       )}
 
       <motion.div
-        className="relative background-dark-gradient flex items-center justify-center overflow-hidden select-none touch-none z-10 mx-2"
+        className="relative background-dark-gradient flex items-center justify-center overflow-hidden select-none touch-none z-10"
         variants={wheelVariants}
         initial={modeVariant}
         animate={modeVariant}
