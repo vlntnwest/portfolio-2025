@@ -3,13 +3,12 @@ import WheelCentralButton from "./WheelCentralButton";
 import WheelButtons from "./WheelButtons";
 import WheelMenu from "./WheelMenu";
 import WheelShadow from "./WheelShadow";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, scale, useReducedMotion } from "framer-motion";
 import { useWheelContext } from "../../contexts/WheelContext";
 import WheelProject from "./WheelProject";
 import IconMenu from "../ui/buttons/IconMenu";
 import Albums from "../SVG/Albums";
 import MenuIcon from "../SVG/MenuIcon";
-import { useCallback, useState } from "react";
 import menus from "@/lib/menus.json";
 import MenuLink from "../ui/buttons/MenuLink";
 
@@ -21,13 +20,41 @@ const wheelVariants = {
     rotate: 0,
     scale: 1,
     translateY: "0px",
-    transition: { type: "spring", stiffness: 200, damping: 20 },
+    transition: { duration: 0.4, ease: "easeInOut" },
   },
   projects: {
     width: "auto",
     height: "auto",
-    transition: { type: "spring", stiffness: 160, damping: 18 },
+    transition: { duration: 0.4, ease: "easeInOut" },
     display: "block",
+  },
+};
+
+const wheelContentVariants = {
+  show: {
+    opacity: 1,
+    appearance: "auto",
+    pointerEvents: "auto",
+  },
+  hide: {
+    opacity: 0,
+    appearance: "none",
+    pointerEvents: "none",
+  },
+};
+
+const menuVariants = {
+  show: {
+    opacity: 1,
+    appearance: "auto",
+    pointerEvents: "auto",
+    scale: 1,
+  },
+  hide: {
+    opacity: 0,
+    appearance: "none",
+    pointerEvents: "none",
+    scale: 0,
   },
 };
 
@@ -70,13 +97,22 @@ const Wheel = () => {
         }}
         transition={shouldReduceMotion ? { duration: 0 } : undefined}
       >
-        {mode === "home" ? (
-          <>
-            <WheelCentralButton />
-            <WheelShadow position={{ x: 0, y: 0 }} />
-            <WheelButtons toggleMenu={toggleMenu} />
-          </>
-        ) : (
+        <motion.div
+          variants={wheelContentVariants}
+          initial="hide"
+          animate={mode === "home" ? "show" : "hide"}
+          transition={{ duration: 0.3, delay: 0.2 }}
+        >
+          <WheelCentralButton />
+          <WheelShadow position={{ x: 0, y: 0 }} />
+          <WheelButtons toggleMenu={toggleMenu} />
+        </motion.div>
+        <motion.div
+          variants={wheelContentVariants}
+          initial="hide"
+          animate={mode === "projects" ? "show" : "hide"}
+          transition={{ duration: 0.3, delay: 0.2 }}
+        >
           <WheelProject
             style={
               mode !== "projects"
@@ -94,34 +130,39 @@ const Wheel = () => {
                   }
             }
           />
-        )}
+        </motion.div>
       </motion.div>
       {mode === "projects" && (
         <IconMenu direction="left" isOpen={iconStates.menu}>
-          {iconStates.menu ? (
-            <ul className="flex flex-col justify-center p-4">
-              {menus.map((menu) => (
-                <MenuLink
-                  key={menu.id}
-                  name={menu.label}
-                  href={menu.href}
-                  onClick={(e) => toggleProjectMenu("menu", e)}
-                />
-              ))}
-            </ul>
-          ) : (
-            <button
-              onClick={(e) => toggleProjectMenu("menu", e)}
-              className="cursor-pointer"
-            >
-              <div className={`p-4`}>
-                <MenuIcon
-                  name="Menu icon"
-                  className="w-6 h-6 fill-wheel-buttons-color hover:fill-wheel-buttons-hover-color transition"
-                />
-              </div>
-            </button>
-          )}
+          <motion.button
+            onClick={(e) => toggleProjectMenu("menu", e)}
+            className="absolute top-0 left-0 cursor-pointer"
+            variants={menuVariants}
+            initial="show"
+            animate={iconStates.menu ? "hide" : "show"}
+          >
+            <div className={`p-4`}>
+              <MenuIcon
+                name="Menu icon"
+                className="w-6 h-6 fill-wheel-buttons-color hover:fill-wheel-buttons-hover-color transition"
+              />
+            </div>
+          </motion.button>
+          <motion.ul
+            className="flex flex-col justify-center p-4"
+            variants={menuVariants}
+            initial="hide"
+            animate={iconStates.menu ? "show" : "hide"}
+          >
+            {menus.map((menu) => (
+              <MenuLink
+                key={menu.id}
+                name={menu.label}
+                href={menu.href}
+                onClick={(e) => toggleProjectMenu("menu", e)}
+              />
+            ))}
+          </motion.ul>
         </IconMenu>
       )}
     </section>

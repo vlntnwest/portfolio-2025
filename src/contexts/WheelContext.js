@@ -16,6 +16,7 @@ export function useWheelContext() {
 export default function WheelProvider({ children }) {
   const [mode, setMode] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const [iconStates, setIconStates] = useState({
     projects: false,
     menu: false,
@@ -31,16 +32,15 @@ export default function WheelProvider({ children }) {
   }, []);
 
   const toggleProjectMenu = useCallback(
-    (iconId, e) => {
-      e?.stopPropagation();
-      setIconStates((prev) => ({
-        ...prev,
-        [iconId]: !prev[iconId],
-      }));
-
-      if (iconStates[iconId] === true) {
-        changeMode("home");
-      }
+    (iconId) => {
+      setIconStates((prev) => {
+        const isCurrentlyOpen = prev[iconId];
+        return {
+          projects: false,
+          menu: false,
+          [iconId]: !isCurrentlyOpen,
+        };
+      });
     },
     [iconStates]
   );
@@ -53,6 +53,15 @@ export default function WheelProvider({ children }) {
 
     return () => document.removeEventListener("click", closeMenu);
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!iconStates.projects && !iconStates.menu) return;
+
+    const closeMenu = () => setIconStates({ projects: false, menu: false });
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [iconStates]);
 
   return (
     <WheelContext.Provider
