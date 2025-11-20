@@ -3,19 +3,45 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const IconMenu = ({ children, direction, isOpen }) => {
-  const [initialRender, setInitialRender] = useState(true);
+  const [btnState, setBtnState] = useState("initial");
 
   useEffect(() => {
-    if (initialRender) {
-      setInitialRender(false);
+    console.log("state", btnState);
+  }, [btnState]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setBtnState("open");
+      return;
     }
+    setBtnState((prev) => (prev === "open" ? "closed" : prev));
+  }, [isOpen, btnState]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setBtnState("initialClosed"), 400);
+    return () => clearTimeout(timer);
   }, []);
+
+  const transition =
+    btnState === "initial"
+      ? { duration: 0.45, ease: "easeOut" }
+      : btnState === "initialClosed"
+      ? { type: "spring", stiffness: 300, damping: 23 }
+      : { type: "tween", duration: 0.22, ease: "easeInOut" };
+
   const menuVariants = {
+    initialClosed: {
+      width: "56px",
+      height: "56px",
+      borderRadius: "56px",
+      transform: "translate(0, 0)",
+    },
     closed: {
       width: "56px",
       height: "56px",
       borderRadius: "56px",
       transform: "translate(0, 0)",
+      zIndex: 10,
     },
     open: {
       width: "auto",
@@ -42,15 +68,11 @@ const IconMenu = ({ children, direction, isOpen }) => {
     <div className="mx-2 flex items-center justify-center w-14 h-14 relative">
       <motion.div
         className="absolute bottom-0 right-0 flex items-center justify-center background-dark-gradient rounded-full overflow-hidden"
-        style={{ zIndex: isOpen ? 10 : 0 }}
         initial="initial"
-        animate={isOpen ? "open" : "closed"}
+        animate={btnState}
         variants={menuVariants}
-        transition={
-          initialRender
-            ? { type: "spring", stiffness: 300, damping: 23, delay: 0.4 }
-            : { duration: 0.3, ease: "easeInOut" }
-        }
+        transition={transition}
+        layout
       >
         {children}
       </motion.div>

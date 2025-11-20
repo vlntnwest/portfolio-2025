@@ -17,7 +17,6 @@ const wheelVariants = {
     width: "200px",
     height: "200px",
     borderRadius: "9999px",
-    rotate: 0,
     scale: 1,
     translateY: "0px",
     transition: { duration: 0.4, ease: "easeInOut" },
@@ -63,8 +62,6 @@ const Wheel = () => {
 
   const shouldReduceMotion = useReducedMotion();
 
-  const modeVariant = mode === "projects" ? "projects" : "home";
-
   return (
     <section className="absolute bottom-0 left-0 right-0 flex items-center justify-center mb-4">
       <WheelMenu />
@@ -87,8 +84,8 @@ const Wheel = () => {
       <motion.div
         className="relative background-dark-gradient flex items-center justify-center overflow-hidden select-none touch-none z-10"
         variants={wheelVariants}
-        initial={modeVariant}
-        animate={modeVariant}
+        initial="home"
+        animate={mode}
         style={{
           width: "200px",
           height: "200px",
