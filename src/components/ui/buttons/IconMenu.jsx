@@ -1,9 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useWheelContext } from "@/contexts/WheelContext";
 
-const IconMenu = ({ children, direction, isOpen }) => {
+const IconMenu = ({ children, direction, name }) => {
   const [btnState, setBtnState] = useState("initial");
+  const { iconStates } = useWheelContext();
+
+  const isOpen = iconStates[name];
 
   useEffect(() => {
     console.log("state", btnState);
@@ -41,7 +45,7 @@ const IconMenu = ({ children, direction, isOpen }) => {
       height: "56px",
       borderRadius: "56px",
       transform: "translate(0, 0)",
-      zIndex: 10,
+      zIndex: 100,
     },
     open: {
       width: "auto",
@@ -52,7 +56,7 @@ const IconMenu = ({ children, direction, isOpen }) => {
         direction === "left"
           ? "translate(-10px, -10px)"
           : "translate(10px, -10px)",
-      zIndex: 10,
+      zIndex: 100,
     },
     initial: {
       width: "56px",
@@ -67,7 +71,9 @@ const IconMenu = ({ children, direction, isOpen }) => {
   return (
     <div className="mx-2 flex items-center justify-center w-14 h-14 relative">
       <motion.div
-        className="absolute bottom-0 right-0 flex items-center justify-center background-dark-gradient rounded-full overflow-hidden"
+        className={`absolute bottom-0 ${
+          direction === "left" ? "right-0" : "left-0"
+        } flex items-center justify-center background-dark-gradient rounded-full overflow-hidden`}
         initial="initial"
         animate={btnState}
         variants={menuVariants}
