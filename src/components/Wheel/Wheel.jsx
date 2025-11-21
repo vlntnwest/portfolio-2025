@@ -51,15 +51,8 @@ const Wheel = () => {
 
   const shouldReduceMotion = useReducedMotion();
 
-  const {
-    wheelRef,
-    position,
-    dirRef,
-    onMouseMove,
-    reset,
-    onTouchMove,
-    onTouchStart,
-  } = useWheelControl();
+  const { wheelRef, position, onMouseMove, reset, onTouchMove, onTouchStart } =
+    useWheelControl();
 
   return (
     <section className="absolute bottom-0 left-0 right-0 flex items-center justify-center mb-4">

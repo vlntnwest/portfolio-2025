@@ -108,13 +108,14 @@ export default function useWheelControl() {
 
   const onWheel = useCallback((e) => {
     wheelAccRef.current += e.deltaY * wheelSensitivity;
+
     let step = 0;
     while (Math.abs(wheelAccRef.current) >= wheelStep) {
       const dir = Math.sign(wheelAccRef.current);
       step += dir;
       wheelAccRef.current -= dir * wheelStep;
     }
-    return step;
+    dirRef.current = step;
   }, []);
 
   useEffect(() => {
