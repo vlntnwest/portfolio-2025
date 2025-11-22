@@ -2,7 +2,7 @@ import ProjectsWrapper from "@/components/Project/ProjectsWrapper";
 
 const Home = () => {
   return (
-    <main>
+    <main className="h-screen relative">
       <ProjectsWrapper />
     </main>
   );

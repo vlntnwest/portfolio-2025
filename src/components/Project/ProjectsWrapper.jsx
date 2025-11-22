@@ -1,10 +1,11 @@
 "use client";
 import projects from "@/lib/projects.json";
 import ProjectItem from "./ProjectItem";
-import useCarousel from "@/hooks/useCarousel";
+import { useCarouselContext } from "@/contexts/CarouselContext";
 
 const ProjectsWrapper = () => {
-  const { emblaRef, projectGap, changeOnClick, selectedIndex } = useCarousel();
+  const { emblaRef, projectGap, changeOnClick, selectedIndex } =
+    useCarouselContext();
 
   const projectList = () => {
     return projects.map((project, index) => (
@@ -20,7 +21,10 @@ const ProjectsWrapper = () => {
   };
 
   return (
-    <div className="embla overflow-hidden flex-1 content-center" ref={emblaRef}>
+    <div
+      className="embla overflow-hidden absolute top-[40%] left-0 right-0 -translate-y-1/2"
+      ref={emblaRef}
+    >
       <ul className="embla__container flex">{projectList()}</ul>
     </div>
   );

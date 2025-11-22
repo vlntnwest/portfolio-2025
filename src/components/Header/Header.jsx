@@ -4,7 +4,9 @@ import MenuLink from "../ui/buttons/MenuLink";
 const Header = () => {
   return (
     <header>
-      <div className="bg-black">{projectsList}</div>
+      <div className="bg-black absolute top-0 left-0 right-0">
+        {projectsList}
+      </div>
     </header>
   );
 };

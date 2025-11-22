@@ -14,6 +14,7 @@ import projects from "@/lib/projects.json";
 import MenuLink from "../ui/buttons/MenuLink";
 import IconMenuInner from "../ui/buttons/IconMenuInner";
 import useWheelControl from "@/hooks/useWheel";
+import { useCarouselContext } from "@/contexts/CarouselContext";
 import { useEffect } from "react";
 
 const wheelVariants = {
@@ -51,8 +52,27 @@ const Wheel = () => {
 
   const shouldReduceMotion = useReducedMotion();
 
-  const { wheelRef, position, onMouseMove, reset, onTouchMove, onTouchStart } =
-    useWheelControl();
+  const {
+    wheelRef,
+    position,
+    onMouseMove,
+    reset,
+    onTouchMove,
+    onTouchStart,
+    dir,
+  } = useWheelControl();
+
+  const { emblaApi } = useCarouselContext();
+
+  useEffect(() => {
+    if (!emblaApi || dir === undefined) return;
+    if (dir === 0) return;
+    if (dir >= 1) {
+      emblaApi.scrollNext();
+    } else if (dir <= -1) {
+      emblaApi.scrollPrev();
+    }
+  }, [emblaApi, dir]);
 
   return (
     <section className="absolute bottom-0 left-0 right-0 flex items-center justify-center mb-4">
