@@ -3,21 +3,21 @@
     "id": 1,
     "label": "Pokey Bar",
     "href": "pokey-bar",
-    "cover": "pokey",
+    "cover": "pokey-cover",
     "tag": "Web - Branding"
   },
   {
     "id": 2,
     "label": "Cabinet dentaire de la Paix",
     "href": "cabinet-dentaire-de-la-paix",
-    "cover": "paix",
+    "cover": "paix-cover",
     "tag": "Web - Branding"
   },
   {
     "id": 3,
     "label": "Inari Strasbourg",
     "href": "inari",
-    "cover": "inari",
+    "cover": "inari-cover",
     "tag": "E-commerce"
   },
   {

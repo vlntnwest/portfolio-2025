@@ -28,10 +28,10 @@ const ProjectItem = ({
         <Image
           src={
             project.cover
-              ? `/assets/images/projects/${project.cover}-cover.png`
+              ? `/assets/images/projects/${project?.cover}.png`
               : "/assets/images/projects/pokey-cover.png"
           }
-          alt={project.label}
+          alt={project?.label || "Projet"}
           width={500}
           height={500}
           className="object-cover absolute top-0 left-0 w-full h-full"

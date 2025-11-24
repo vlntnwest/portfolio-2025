@@ -1,16 +1,17 @@
 import Image from "next/image";
 import Nav from "../SVG/Nav";
 import { motion } from "framer-motion";
+import projects from "@/lib/projects.json";
+import { useParams } from "next/navigation";
 
 const WheelProject = ({ className, style }) => {
-  const project = {
-    name: "Pokey",
-    description: "Web - Branding",
-    image: "/assets/images/projects/pokey.png",
-  };
+  const params = useParams();
+  const { name } = params;
+
+  const project = projects.find((p) => p.href === name);
 
   const afterStyle = {
-    "--after-content": `'${project.description}'`,
+    "--after-content": `'${project?.tag}'`,
   };
 
   return (
@@ -20,14 +21,20 @@ const WheelProject = ({ className, style }) => {
     >
       <div className="flex gap-2">
         <Image
-          src={project.image}
-          alt={project.name}
+          src={
+            project?.cover
+              ? `/assets/images/projects/${project?.cover}.png`
+              : "/assets/images/projects/pokey-cover.png"
+          }
+          alt={project?.label || "Projet"}
           width={40}
           height={40}
-          className="rounded-md"
+          className="rounded-md max-h-10 object-cover max-w-10 aspect-square"
         />
         <div className="overflow-hidden">
-          <h2 className="text-white text-sm/4 font-semibold">{project.name}</h2>
+          <h2 className="text-white text-sm/4 font-semibold text-nowrap">
+            {project?.label}
+          </h2>
           <motion.p
             className="relative inline-block text-white text-sm/4 text-nowrap after:content-[var(--after-content)] after:absolute after:bottom-0 after:right-0 after:translate-x-[150%] after:text-sm/4 after:w-full after:h-full after:text-white after:whitespace-pre-line"
             style={afterStyle}
@@ -40,7 +47,7 @@ const WheelProject = ({ className, style }) => {
               repeatDelay: 5,
             }}
           >
-            {project.description}
+            {project?.tag}
           </motion.p>
         </div>
       </div>
