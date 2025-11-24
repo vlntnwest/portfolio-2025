@@ -52,6 +52,7 @@ const wheelContentVariants = {
 
 const Wheel = () => {
   const { mode, toggleMenu, prevProject, nextProject } = useWheelContext();
+  const { selectedIndex } = useCarouselContext();
 
   const shouldReduceMotion = useReducedMotion();
 
@@ -117,8 +118,11 @@ const Wheel = () => {
           animate={mode === "home" ? "show" : "hide"}
           transition={{ duration: 0.3, delay: 0.2 }}
         >
-          <WheelCentralButton />
-          <WheelButtons toggleMenu={toggleMenu} />
+          <WheelCentralButton project={projects[selectedIndex]} />
+          <WheelButtons
+            toggleMenu={toggleMenu}
+            project={projects[selectedIndex]}
+          />
         </motion.div>
         <motion.div
           variants={wheelContentVariants}
@@ -177,6 +181,8 @@ const projectsList = projects.map((project) => (
     key={project.id}
     name={project.label}
     href={`/projects/${project.href}`}
+    cover={project.cover}
+    icon={true}
   />
 ));
 
