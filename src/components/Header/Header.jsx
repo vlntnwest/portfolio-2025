@@ -1,4 +1,6 @@
 import Image from "next/image";
+import ContactContainer from "./ContactContainer";
+import ContactBubbles from "./ContactBubbles";
 
 const Header = () => {
   return (
@@ -14,7 +16,9 @@ const Header = () => {
               className="h-20 w-20"
             />
           </span>
-          <h1>Valentin</h1>
+          <ContactContainer>
+            <ContactBubbles />
+          </ContactContainer>
         </div>
       </div>
     </header>
