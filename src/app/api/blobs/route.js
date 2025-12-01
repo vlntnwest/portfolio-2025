@@ -2,7 +2,6 @@ import { list } from "@vercel/blob";
 
 export async function GET(req) {
   const prefix = req.nextUrl.searchParams.get("prefix") || "";
-  console.log(prefix);
 
   try {
     const token = process.env.FOLIO_READ_WRITE_TOKEN;

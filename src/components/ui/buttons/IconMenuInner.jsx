@@ -18,7 +18,6 @@ const menuVariants = {
 
 const IconMenuInner = ({ name, icon, menu }) => {
   const { toggleProjectMenu, iconStates } = useWheelContext();
-  console.log(menu);
 
   return (
     <>
