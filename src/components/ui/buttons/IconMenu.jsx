@@ -58,7 +58,7 @@ const IconMenu = ({ children, direction, name }) => {
       width: "56px",
       height: "56px",
       borderRadius: "16px",
-      zIndex: 0,
+      zIndex: 2,
       transform:
         direction === "left" ? "translateX(-200px)" : "translateX(200px)",
     },

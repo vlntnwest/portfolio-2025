@@ -82,7 +82,7 @@ const Wheel = () => {
   }, [emblaApi, dir]);
 
   return (
-    <section className="absolute bottom-0 left-0 right-0 flex items-center justify-center mb-4">
+    <section className="fixed bottom-0 left-0 right-0 z-99999 flex items-center justify-center mb-4">
       <WheelMenu />
       {mode === "projects" && (
         <IconMenu direction="right" name="projects">
