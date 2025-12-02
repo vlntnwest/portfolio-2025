@@ -31,7 +31,7 @@ const IconMenuInner = ({ name, icon, menu, pb = false }) => {
         <div className={`p-4`}>{icon}</div>
       </motion.button>
       <motion.ul
-        className={`px-4 pt-4 w-[85vw] max-w-[300px] max-h-[260px] overflow-y-auto ${
+        className={`px-4 pt-4 w-[85vw] max-w-[300px] max-h-[260px] overflow-y-auto scrollbar-hidden ${
           pb ? "pb-4" : ""
         }`}
         variants={menuVariants}

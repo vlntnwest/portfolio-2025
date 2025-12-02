@@ -2,14 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 
 const MenuLink = ({ name, href, onClick, cover, icon }) => {
+  const baseBlobUrl = process.env.NEXT_PUBLIC_BASE_BLOB_URL;
   return (
-    <li className="mb-4 last:mb-0 flex gap-2">
+    <li className="mb-4 flex gap-2">
       {icon && (
         <Image
           src={
             cover
-              ? `/assets/images/projects/${cover}.png`
-              : "/assets/images/projects/pokey-cover.png"
+              ? `${baseBlobUrl}/covers/${cover}.png`
+              : `${baseBlobUrl}/covers/pokey-cover.png`
           }
           alt={name}
           width={40}
