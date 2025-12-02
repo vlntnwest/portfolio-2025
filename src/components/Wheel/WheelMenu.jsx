@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useWheelContext } from "../../contexts/WheelContext";
 import { useReducedMotion } from "framer-motion";
 import { motion } from "framer-motion";
+import menuLinks from "@/lib/menus.json";
 
 const menuVariants = {
   closed: {
@@ -47,24 +48,15 @@ const WheelMenu = () => {
           }}
         >
           <div className="w-full px-4 flex justify-center items-center gap-10 text-white text-center flex gap-10 font-medium text-sm/6 appearance-none py-4">
-            <Link
-              href="/"
-              className="text-wheel-buttons-color hover:text-wheel-buttons-hover-color transition pointer-events-auto"
-            >
-              Home
-            </Link>
-            <Link
-              href="/playground"
-              className="text-wheel-buttons-color hover:text-wheel-buttons-hover-color transition pointer-events-auto"
-            >
-              Playground
-            </Link>
-            <Link
-              href="/contact"
-              className="text-wheel-buttons-color hover:text-wheel-buttons-hover-color transition pointer-events-auto"
-            >
-              Contact
-            </Link>
+            {menuLinks.map((link) => (
+              <Link
+                key={link.id}
+                href={link.href}
+                className="text-wheel-buttons-color hover:text-wheel-buttons-hover-color transition pointer-events-auto"
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </motion.div>
       </div>
