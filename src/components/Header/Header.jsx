@@ -7,7 +7,7 @@ const Header = () => {
   const baseBlobUrl = process.env.NEXT_PUBLIC_BASE_BLOB_URL;
 
   return (
-    <header className="absolute top-0 left-0 right-0 p-6">
+    <header className="sticky top-0 left-0 right-0 z-99999 px-4 pt-4">
       <div className="flex justify-center items-center">
         <div className="flex flex-col items-center ">
           <Link

@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { useState } from "react";
 import projects from "@/lib/projects.json";
+import { useRef } from "react";
+import { useInfiniteClone } from "@/hooks/useInfiniteClone";
 
 const page = () => {
   const { name } = useParams();
@@ -10,21 +11,32 @@ const page = () => {
 
   const project = projects.find((project) => project.href === name);
 
+  const containerRef = useRef(null);
+
+  useInfiniteClone(containerRef, 200);
+
   return (
-    <div className="p-4">
+    <section>
       <h1 className="sr-only">{name}</h1>
-      {project &&
-        project.images.map((image) => (
-          <Image
-            key={image.url}
-            src={`${baseBlopUrl}/projects/${name}/${image.url}`}
-            alt={image.alt}
-            width={image.width}
-            height={image.height}
-            loading="eager"
-          />
-        ))}
-    </div>
+      <div ref={containerRef}>
+        <div className="h-auto">
+          <div>
+            {project &&
+              project.images.map((image) => (
+                <Image
+                  key={image.url}
+                  src={`${baseBlopUrl}/projects/${name}/${image.url}`}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  loading="eager"
+                  className="pt-4 aspect-auto h-auto object-cover"
+                />
+              ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 export default page;
