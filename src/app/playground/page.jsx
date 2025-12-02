@@ -2,153 +2,118 @@
 import Image from "next/image";
 import { useInfiniteClone } from "@/hooks/useInfiniteClone";
 import { useRef } from "react";
-import { useEffect } from "react";
 import { useWheelContext } from "@/contexts/WheelContext";
+import { useState } from "react";
 
 const page = () => {
   const containerRef = useRef(null);
+  const [showModal, setShowModal] = useState(false);
+  const [src, setSrc] = useState(null);
 
   useInfiniteClone(containerRef, 200);
 
   const { dir } = useWheelContext();
 
-  useEffect(() => {
-    console.log(dir);
-  }, [dir]);
+  const handleClick = (src) => {
+    setShowModal((s) => !s);
+    setSrc(src);
+  };
 
   return (
-    <div>
-      <div className="flex flex-wrap" ref={containerRef}>
-        <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
-          <div className="aspect-square">
-            <Image
-              src="https://bto1vhg21okdlu4o.public.blob.vercel-storage.com/projects/pokey-bar/Pokey_Desktop_Mockup.webp"
-              alt="Pokey Desktop Mockup"
-              width={3000}
-              height={2500}
-              className="w-full h-full object-contain group-hover:scale-90 transition-all duration-300 ease-in-out"
-              loading="eager"
-            />
+    <>
+      <div>
+        {showModal && (
+          <div
+            className="absolute top-0 left-0 w-screen h-screen bg-white z-999999"
+            onClick={() => handleClick(null)}
+          >
+            <div className="w-full h-full flex items-center">
+              <Image
+                src={src}
+                alt="Pokey Desktop Mockup"
+                width={3000}
+                height={2500}
+                className=""
+                loading="eager"
+              />
+            </div>
           </div>
-          <div className="text-center pt-[10px] flex justify-center inner">
-            <span>0</span>
-            <span>01</span>
+        )}
+        <div className="flex flex-wrap" ref={containerRef}>
+          <div
+            className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4"
+            onClick={() =>
+              handleClick(
+                "https://bto1vhg21okdlu4o.public.blob.vercel-storage.com/projects/pokey-bar/Pokey_Desktop_Mockup.webp"
+              )
+            }
+          >
+            <div className="aspect-square">
+              <Image
+                src="https://bto1vhg21okdlu4o.public.blob.vercel-storage.com/projects/pokey-bar/Pokey_Desktop_Mockup.webp"
+                alt="Pokey Desktop Mockup"
+                width={3000}
+                height={2500}
+                className="w-full h-full object-contain group-hover:scale-90 transition-all duration-300 ease-in-out"
+                loading="eager"
+              />
+            </div>
+            <div className="text-center pt-[10px] flex justify-center inner">
+              <span>0</span>
+              <span>01</span>
+            </div>
           </div>
-        </div>
-        <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
-          <div className="aspect-square">
-            <Image
-              src="https://bto1vhg21okdlu4o.public.blob.vercel-storage.com/projects/pokey-bar/Pokey_Front.webp"
-              alt="Pokey Front"
-              width={3000}
-              height={2500}
-              className="w-full h-full object-contain group-hover:scale-90 transition-all duration-300 ease-in-out"
-              loading="eager"
-            />
+          <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
+            <div className="aspect-square">
+              <Image
+                src="https://bto1vhg21okdlu4o.public.blob.vercel-storage.com/projects/pokey-bar/Pokey_Front.webp"
+                alt="Pokey Front"
+                width={3000}
+                height={2500}
+                className="w-full h-full object-contain group-hover:scale-90 transition-all duration-300 ease-in-out"
+                loading="eager"
+              />
+            </div>
+            <div className="text-center pt-[10px] flex justify-center inner">
+              <span>0</span>
+              <span>02</span>
+            </div>
           </div>
-          <div className="text-center pt-[10px] flex justify-center inner">
-            <span>0</span>
-            <span>02</span>
+          <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
+            <div className="aspect-square">
+              <Image
+                src="https://bto1vhg21okdlu4o.public.blob.vercel-storage.com/projects/pokey-bar/Pokey_Desktop_Mockup.webp"
+                alt="Pokey Desktop Mockup"
+                width={3000}
+                height={2500}
+                className="w-full h-full object-contain group-hover:scale-90 transition-all duration-300 ease-in-out"
+                loading="eager"
+              />
+            </div>
+            <div className="text-center pt-[10px] flex justify-center inner">
+              <span>0</span>
+              <span>03</span>
+            </div>
           </div>
-        </div>
-        <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
-          <div className="aspect-square">
-            <Image
-              src="https://bto1vhg21okdlu4o.public.blob.vercel-storage.com/projects/pokey-bar/Pokey_Desktop_Mockup.webp"
-              alt="Pokey Desktop Mockup"
-              width={3000}
-              height={2500}
-              className="w-full h-full object-contain group-hover:scale-90 transition-all duration-300 ease-in-out"
-              loading="eager"
-            />
-          </div>
-          <div className="text-center pt-[10px] flex justify-center inner">
-            <span>0</span>
-            <span>03</span>
-          </div>
-        </div>
-        <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
-          <div className="aspect-square">
-            <Image
-              src="https://bto1vhg21okdlu4o.public.blob.vercel-storage.com/projects/pokey-bar/Pokey_Desktop_Mockup.webp"
-              alt="Pokey Desktop Mockup"
-              width={3000}
-              height={2500}
-              className="w-full h-full object-contain group-hover:scale-90 transition-all duration-300 ease-in-out"
-              loading="eager"
-            />
-          </div>
-          <div className="text-center pt-[10px] flex justify-center inner">
-            <span>0</span>
-            <span>04</span>
-          </div>
-        </div>
-        <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
-          <div className="aspect-square">
-            <Image
-              src="https://bto1vhg21okdlu4o.public.blob.vercel-storage.com/projects/pokey-bar/Pokey_Desktop_Mockup.webp"
-              alt="Pokey Desktop Mockup"
-              width={3000}
-              height={2500}
-              className="w-full h-full object-contain group-hover:scale-90 transition-all duration-300 ease-in-out"
-              loading="eager"
-            />
-          </div>
-          <div className="text-center pt-[10px] flex justify-center inner">
-            <span>0</span>
-            <span>01</span>
-          </div>
-        </div>
-        <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
-          <div className="aspect-square">
-            <Image
-              src="https://bto1vhg21okdlu4o.public.blob.vercel-storage.com/projects/pokey-bar/Pokey_Front.webp"
-              alt="Pokey Front"
-              width={3000}
-              height={2500}
-              className="w-full h-full object-contain group-hover:scale-90 transition-all duration-300 ease-in-out"
-              loading="eager"
-            />
-          </div>
-          <div className="text-center pt-[10px] flex justify-center inner">
-            <span>0</span>
-            <span>02</span>
-          </div>
-        </div>
-        <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
-          <div className="aspect-square">
-            <Image
-              src="https://bto1vhg21okdlu4o.public.blob.vercel-storage.com/projects/pokey-bar/Pokey_Desktop_Mockup.webp"
-              alt="Pokey Desktop Mockup"
-              width={3000}
-              height={2500}
-              className="w-full h-full object-contain group-hover:scale-90 transition-all duration-300 ease-in-out"
-              loading="eager"
-            />
-          </div>
-          <div className="text-center pt-[10px] flex justify-center inner">
-            <span>0</span>
-            <span>03</span>
-          </div>
-        </div>
-        <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
-          <div className="aspect-square">
-            <Image
-              src="https://bto1vhg21okdlu4o.public.blob.vercel-storage.com/projects/pokey-bar/Pokey_Desktop_Mockup.webp"
-              alt="Pokey Desktop Mockup"
-              width={3000}
-              height={2500}
-              className="w-full h-full object-contain group-hover:scale-90 transition-all duration-300 ease-in-out"
-              loading="eager"
-            />
-          </div>
-          <div className="text-center pt-[10px] flex justify-center inner">
-            <span>0</span>
-            <span>04</span>
+          <div className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
+            <div className="aspect-square">
+              <Image
+                src="https://bto1vhg21okdlu4o.public.blob.vercel-storage.com/projects/pokey-bar/Pokey_Desktop_Mockup.webp"
+                alt="Pokey Desktop Mockup"
+                width={3000}
+                height={2500}
+                className="w-full h-full object-contain group-hover:scale-90 transition-all duration-300 ease-in-out"
+                loading="eager"
+              />
+            </div>
+            <div className="text-center pt-[10px] flex justify-center inner">
+              <span>0</span>
+              <span>04</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default page;

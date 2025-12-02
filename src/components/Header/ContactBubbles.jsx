@@ -31,7 +31,7 @@ const ContactBubbles = () => {
     >
       <div className="relative flex flex-col items-center justify-center">
         <motion.div
-          className="relative background-dark-gradient rounded-full px-4 z-2"
+          className="relative background-dark-gradient rounded-full px-4 z-2 pointer-events-auto"
           initial="close"
           animate={open ? "open" : "close"}
           variants={{
