@@ -1,29 +1,23 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
-export function useInfiniteClone(originalRef, threshold = 300) {
-  const lastCloneRef = useRef(null);
+export function useInfiniteScroll(initialItems, threshold = 400) {
+  const [items, setItems] = useState(initialItems);
 
   useEffect(() => {
-    const originalNode = originalRef.current;
-    if (!originalNode) return;
-
-    const onScroll = () => {
+    const handleScroll = () => {
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
       const scrollBottom =
         document.body.scrollHeight - (scrollTop + windowHeight);
 
       if (scrollBottom < threshold) {
-        const clone = originalNode.cloneNode(true);
-
-        const insertAfter = lastCloneRef.current || originalNode;
-        insertAfter.insertAdjacentElement("afterend", clone);
-
-        lastCloneRef.current = clone;
+        setItems((prev) => [...prev, ...initialItems]);
       }
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [originalRef, threshold]);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [initialItems, threshold]);
+
+  return items;
 }

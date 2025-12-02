@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import projects from "@/lib/projects.json";
 import { useRef } from "react";
-import { useInfiniteClone } from "@/hooks/useInfiniteClone";
+import { useInfiniteScroll } from "@/hooks/useInfiniteClone";
 
 const page = () => {
   const { name } = useParams();
@@ -11,7 +11,7 @@ const page = () => {
   const project = projects.find((project) => project.href === name);
   const containerRef = useRef(null);
 
-  useInfiniteClone(containerRef, 200);
+  const items = useInfiniteScroll(project.images, 400);
 
   return (
     <section className="overflow-y-auto">
@@ -19,18 +19,17 @@ const page = () => {
       <div ref={containerRef}>
         <div className="h-auto">
           <div>
-            {project &&
-              project.images.map((image) => (
-                <Image
-                  key={image.url}
-                  src={`${baseBlopUrl}/projects/${name}/${image.url}`}
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  loading="eager"
-                  className=" aspect-auto w-full max-w-[calc(100%-24px)] h-auto max-h-[80vh] object-contain sm:max-w-[70vw] mx-4 mb-4 mx-auto"
-                />
-              ))}
+            {items.map((image, index) => (
+              <Image
+                key={index}
+                src={`${baseBlopUrl}/projects/${name}/${image.url}`}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                loading="eager"
+                className=" aspect-auto w-full max-w-[calc(100%-24px)] h-auto max-h-[80vh] object-contain sm:max-w-[70vw] mx-4 mb-4 mx-auto"
+              />
+            ))}
           </div>
         </div>
       </div>
