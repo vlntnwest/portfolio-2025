@@ -9,6 +9,8 @@ const WheelProject = ({ className, style, prevHref, nextHref }) => {
 
   if (!currentProject) return null;
 
+  const baseBlobUrl = process.env.NEXT_PUBLIC_BASE_BLOB_URL;
+
   return (
     <div
       className={`px-4 py-2 relative gap-4 flex max-w-[300px] ${className}`}
@@ -18,8 +20,8 @@ const WheelProject = ({ className, style, prevHref, nextHref }) => {
         <Image
           src={
             currentProject?.cover
-              ? `/assets/images/projects/${currentProject?.cover}.png`
-              : "/assets/images/projects/pokey-cover.png"
+              ? `${baseBlobUrl}/covers/${currentProject?.cover}.png`
+              : `${baseBlobUrl}/covers/pokey-cover.png`
           }
           alt={currentProject?.label || "Projet"}
           width={40}

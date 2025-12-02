@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 export function useInfiniteClone(originalRef, threshold = 300) {
-  const lastCloneRef = useRef(null); // pour garder la trace du dernier clone
+  const lastCloneRef = useRef(null);
 
   useEffect(() => {
     const originalNode = originalRef.current;
@@ -16,11 +16,9 @@ export function useInfiniteClone(originalRef, threshold = 300) {
       if (scrollBottom < threshold) {
         const clone = originalNode.cloneNode(true);
 
-        // si on a déjà un clone, on ajoute après le dernier clone
         const insertAfter = lastCloneRef.current || originalNode;
         insertAfter.insertAdjacentElement("afterend", clone);
 
-        // on mémorise ce dernier clone
         lastCloneRef.current = clone;
       }
     };

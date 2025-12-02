@@ -16,7 +16,7 @@ const page = () => {
   useInfiniteClone(containerRef, 200);
 
   return (
-    <section>
+    <section className="overflow-y-scroll">
       <h1 className="sr-only">{name}</h1>
       <div ref={containerRef}>
         <div className="h-auto">
