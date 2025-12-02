@@ -16,7 +16,7 @@ const page = () => {
   useInfiniteClone(containerRef, 200);
 
   return (
-    <section className="overflow-y-scroll">
+    <section className="overflow-y-auto">
       <h1 className="sr-only">{name}</h1>
       <div ref={containerRef}>
         <div className="h-auto">
@@ -30,7 +30,7 @@ const page = () => {
                   width={image.width}
                   height={image.height}
                   loading="eager"
-                  className="pt-4 aspect-auto h-auto object-cover"
+                  className=" aspect-auto w-full max-w-[calc(100%-24px)] h-auto max-h-[125vh] object-cover sm:max-w-[70vw] mx-4 mb-3 mx-auto"
                 />
               ))}
           </div>

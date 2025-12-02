@@ -1,6 +1,5 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import UIChrome from "@/components/UIChrome";
 import CarouselProvider from "@/contexts/CarouselContext";
 import Providers from "@/contexts/Providers";
 import Header from "@/components/Header/Header";
@@ -20,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body
-        className={`${poppins.className} antialiased touch-none overflow-x-hidden`}
+        className={`${poppins.className} antialiased touch-none overflow-x-hidden scrollbar-hidden`}
       >
         <CarouselProvider>
           <Providers>

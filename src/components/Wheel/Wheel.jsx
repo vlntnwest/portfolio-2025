@@ -153,7 +153,12 @@ const Wheel = () => {
       </motion.div>
       {mode === "projects" && (
         <IconMenu direction="left" name="menu">
-          <IconMenuInner name="menu" icon={menuIcon} menu={menuList} />
+          <IconMenuInner
+            name="menu"
+            icon={menuIcon}
+            menu={menuList}
+            pb={true}
+          />
         </IconMenu>
       )}
     </section>

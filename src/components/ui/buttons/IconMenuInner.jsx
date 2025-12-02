@@ -16,7 +16,7 @@ const menuVariants = {
   },
 };
 
-const IconMenuInner = ({ name, icon, menu }) => {
+const IconMenuInner = ({ name, icon, menu, pb = false }) => {
   const { toggleProjectMenu, iconStates } = useWheelContext();
 
   return (
@@ -31,7 +31,9 @@ const IconMenuInner = ({ name, icon, menu }) => {
         <div className={`p-4`}>{icon}</div>
       </motion.button>
       <motion.ul
-        className="p-6 w-[85vw] max-w-[300px] max-h-[328px] overflow-y-auto"
+        className={`px-4 pt-4 w-[85vw] max-w-[300px] max-h-[260px] overflow-y-auto ${
+          pb ? "pb-4" : ""
+        }`}
         variants={menuVariants}
         initial="hide"
         animate={iconStates[name] ? "show" : "hide"}
