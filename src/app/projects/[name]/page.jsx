@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import projects from "@/lib/projects.json";
 import { useRef } from "react";
 import { useInfiniteScroll } from "@/hooks/useInfiniteClone";
+import Header from "@/components/Header/Header";
 
 const page = () => {
   const { name } = useParams();
@@ -14,26 +15,29 @@ const page = () => {
   const items = useInfiniteScroll(project.images, 400);
 
   return (
-    <section className="overflow-y-auto">
-      <h1 className="sr-only">{name}</h1>
-      <div ref={containerRef}>
-        <div className="h-auto">
-          <div>
-            {items.map((image, index) => (
-              <Image
-                key={index}
-                src={`${baseBlopUrl}/projects/${name}/${image.url}`}
-                alt={image.alt}
-                width={image.width}
-                height={image.height}
-                loading="eager"
-                className=" aspect-auto w-full max-w-[calc(100%-24px)] h-auto max-h-[80vh] object-contain sm:max-w-[70vw] mx-4 mb-4 mx-auto"
-              />
-            ))}
+    <>
+      <Header />
+      <section className="overflow-y-auto">
+        <h1 className="sr-only">{name}</h1>
+        <div ref={containerRef}>
+          <div className="h-auto">
+            <div>
+              {items.map((image, index) => (
+                <Image
+                  key={index}
+                  src={`${baseBlopUrl}/projects/${name}/${image.url}`}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  loading="eager"
+                  className=" aspect-auto w-full max-w-[calc(100%-24px)] h-auto max-h-[80vh] object-contain sm:max-w-[70vw] mx-4 mb-4 mx-auto"
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 export default page;

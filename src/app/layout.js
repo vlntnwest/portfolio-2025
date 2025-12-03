@@ -23,10 +23,7 @@ export default function RootLayout({ children }) {
       >
         <CarouselProvider>
           <Providers>
-            <main className="flex flex-col h-auto">
-              <Header />
-              {children}
-            </main>
+            <main className="flex flex-col h-auto">{children}</main>
             <Wheel />
           </Providers>
         </CarouselProvider>
