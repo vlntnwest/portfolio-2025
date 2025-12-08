@@ -5,6 +5,7 @@
     "href": "pokey-bar",
     "cover": "pokey-cover",
     "tag": "Web - Branding",
+    "website": "https://www.pokey-bar.fr",
     "images": [
       {
         "url": "Pokey_Front.webp",
@@ -67,25 +68,29 @@
     "label": "Cabinet dentaire de la Paix",
     "href": "cabinet-dentaire-de-la-paix",
     "cover": "paix-cover",
-    "tag": "Web - Branding"
+    "tag": "Web - Branding",
+    "website": "https://www.cabinetdentairedelapaixstrasbourg.fr"
   },
   {
     "id": 3,
     "label": "Inari Strasbourg",
     "href": "inari",
     "cover": "inari-cover",
-    "tag": "E-commerce"
+    "tag": "E-commerce",
+    "website": "https://www.inarimod.fr"
   },
   {
     "id": 4,
     "label": "22point5",
     "href": "22point5",
-    "tag": "Web development"
+    "tag": "Web development",
+    "website": "https://www.22point5.fr"
   },
   {
     "id": 5,
     "label": "BCI Construction",
     "href": "bci",
-    "tag": "Web development"
+    "tag": "Web development",
+    "website": "https://www.bci-construction.fr"
   }
 ]

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useWheelContext } from "@/contexts/WheelContext";
 
 const WheelProject = ({ className, style, prevHref, nextHref }) => {
-  const { currentProject } = useWheelContext();
+  const { currentProject, prevProject, nextProject } = useWheelContext();
 
   if (!currentProject) return null;
 
@@ -16,7 +16,12 @@ const WheelProject = ({ className, style, prevHref, nextHref }) => {
       className={`px-4 py-2 relative gap-4 flex max-w-[300px] ${className}`}
       style={style}
     >
-      <div className="flex gap-2">
+      <Link
+        href={currentProject?.website}
+        target="_blank"
+        aria-label={`Site web de ${currentProject?.label}`}
+        className="flex gap-2"
+      >
         <Image
           src={
             currentProject?.cover
@@ -50,10 +55,12 @@ const WheelProject = ({ className, style, prevHref, nextHref }) => {
             {currentProject?.tag}
           </motion.p>
         </div>
-      </div>
+      </Link>
       <div className="flex justify-between items-center z-10 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-linear-[90deg,#43434900_50%,#202022_70%] before:pointer-events-none">
         <Link
-          href={`/projects/${prevHref}` ?? "/"}
+          href={`${prevHref}` ?? "/"}
+          aria-label={`Projet ${prevProject?.label}`}
+          target={prevProject?.website ? "_blank" : "_self"}
           className="cursor-pointer z-10 pointer-events-auto active:scale-95"
         >
           <div className="pr-1 h-3">
@@ -64,7 +71,9 @@ const WheelProject = ({ className, style, prevHref, nextHref }) => {
           </div>
         </Link>
         <Link
-          href={`/projects/${nextHref}` ?? "/"}
+          href={`${nextHref}` ?? "/"}
+          aria-label={`Projet ${nextProject?.label}`}
+          target={nextProject?.website ? "_blank" : "_self"}
           className="cursor-pointer z-10 pointer-events-auto active:scale-95"
         >
           <div className="pl-1 h-3">

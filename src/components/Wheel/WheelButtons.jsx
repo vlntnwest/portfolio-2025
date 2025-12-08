@@ -2,10 +2,22 @@ import Play from "@/components/SVG/Play";
 import Nav from "../SVG/Nav";
 import { motion } from "framer-motion";
 import { useWheelContext } from "../../contexts/WheelContext";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const WheelButtons = ({ project }) => {
-  const { toggleMenu, handleDirection } = useWheelContext();
+  const { toggleMenu, handleDirection, projectLink } = useWheelContext();
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (!projectLink) return;
+
+    if (projectLink.startsWith("#")) {
+      history.replaceState(null, "", projectLink);
+      window.dispatchEvent(new HashChangeEvent("hashchange"));
+    } else {
+      router.push(projectLink);
+    }
+  };
 
   return (
     <>
@@ -21,14 +33,14 @@ const WheelButtons = ({ project }) => {
             </span>
           </div>
         </motion.button>
-        <Link
-          href={`/projects/${project.href}`}
+        <button
+          onClick={handleClick}
           className="mb-2 cursor-pointer pointer-events-auto"
         >
           <div className="p-1 h-5">
             <Play className="h-full fill-wheel-buttons-color hover:fill-wheel-buttons-hover-color transition" />
           </div>
-        </Link>
+        </button>
       </div>
       <div className="absolute top-0 left-0 w-full h-full flex justify-between items-center pointer-events-none">
         <button

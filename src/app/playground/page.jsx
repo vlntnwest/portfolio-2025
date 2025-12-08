@@ -10,16 +10,33 @@ const Page = () => {
   const [showModal, setShowModal] = useState(false);
   const [src, setSrc] = useState(1);
   const items = useInfiniteScroll(projectPlayground, 400);
+  const { setProjectLink } = useWheelContext();
 
   const baseBlobUrl = process.env.NEXT_PUBLIC_BASE_BLOB_URL;
 
-  const [isActive, setIsActive] = useState(-1);
+  const [isActive, setIsActive] = useState(0);
   const { dir } = useWheelContext();
 
-  const handleClick = (src) => {
-    setShowModal((s) => !s);
-    setSrc(src);
+  const handleClick = (item) => {
+    setShowModal(true);
+    setSrc(`${baseBlobUrl}/${item.src}`);
+    history.replaceState(null, "", `#${item.href}`);
   };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSrc(null);
+
+    const pathname = window.location.pathname;
+    history.replaceState(null, "", pathname);
+  };
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   useEffect(() => {
     if (items.length < 0) return;
@@ -49,14 +66,46 @@ const Page = () => {
     }
   }, [isActive, items]);
 
+  useEffect(() => {
+    const openModalFromHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (!hash) {
+        setShowModal(false);
+        setSrc(null);
+        return;
+      }
+
+      const found = items.find(
+        (item) => item.href === hash || String(item.id) === hash
+      );
+      if (found) {
+        setSrc(`${baseBlobUrl}/${found.src}`);
+        setShowModal(true);
+      }
+    };
+
+    openModalFromHash();
+    window.addEventListener("hashchange", openModalFromHash);
+
+    return () => window.removeEventListener("hashchange", openModalFromHash);
+  }, [items]);
+
+  useEffect(() => {
+    if (!items || isActive < 0 || isActive >= items.length) return;
+
+    const activeItem = items[isActive];
+    if (!activeItem) return;
+    setProjectLink(`#${activeItem.href}`);
+  }, [isActive, items]);
+
   return (
     <>
       <Header />
-      <div className="">
+      <div>
         {showModal && (
           <div
             className="fixed top-0 left-0 w-screen h-screen bg-white z-999999"
-            onClick={() => handleClick(null)}
+            onClick={closeModal}
           >
             <div className="w-full h-full flex items-center">
               <Image
@@ -73,16 +122,20 @@ const Page = () => {
 
         <div className="flex flex-wrap">
           {items.map((item, index) => (
-            <div
-              className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4"
+            <a
+              className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4 block cursor-pointer"
               key={index}
               data-index={index}
-              onClick={() => handleClick(`${baseBlobUrl}/${item.src}`)}
+              href={`#${item.href}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleClick(item);
+              }}
             >
               <div className="aspect-square">
                 <div
-                  className={`p-2 rounded-xs ${
-                    isActive === index && "bg-black"
+                  className={`p-2 rounded-sm ${
+                    isActive === index && "bg-[#89898938]"
                   }`}
                 >
                   <Image
@@ -99,7 +152,7 @@ const Page = () => {
                 <span>0</span>
                 <span>{item.id}</span>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

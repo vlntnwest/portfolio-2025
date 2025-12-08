@@ -16,7 +16,7 @@ const ProjectItem = ({
       style={{ marginRight: projectGap }}
     >
       <Link
-        href={`/projects/${project.href}`}
+        href={project.images ? `/projects/${project.href}` : project.website}
         className="w-full h-full cursor-pointer flex items-center justify-center relative"
         aria-label={`Projet ${project.label}`}
         onClick={(e) => {
@@ -25,6 +25,7 @@ const ProjectItem = ({
             changeOnClick(index);
           }
         }}
+        target={project.images ? "_self" : "_blank"}
       >
         <Image
           src={

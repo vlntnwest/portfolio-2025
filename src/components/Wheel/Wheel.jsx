@@ -15,6 +15,7 @@ import MenuLink from "../ui/buttons/MenuLink";
 import IconMenuInner from "../ui/buttons/IconMenuInner";
 import { useCarouselContext } from "@/contexts/CarouselContext";
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const wheelVariants = {
   initial: { opacity: 0, transition: { duration: 0 } },
@@ -61,15 +62,19 @@ const Wheel = () => {
     onTouchMove,
     onTouchStart,
     dir,
+    setProjectLink,
   } = useWheelContext();
-  const { selectedIndex } = useCarouselContext();
+  const { selectedIndex, setSelectedIndex, emblaApi } = useCarouselContext();
+  const pathname = usePathname();
 
   const shouldReduceMotion = useReducedMotion();
 
-  const { emblaApi } = useCarouselContext();
-
-  const prevHref = prevProject ? prevProject.href : "";
-  const nextHref = nextProject ? nextProject.href : "";
+  const prevHref = prevProject?.images
+    ? `/projects/${prevProject.href}`
+    : prevProject?.website;
+  const nextHref = nextProject?.images
+    ? `/projects/${nextProject.href}`
+    : nextProject?.website;
 
   useEffect(() => {
     if (!emblaApi || dir === undefined) return;
@@ -80,6 +85,18 @@ const Wheel = () => {
       emblaApi.scrollPrev();
     }
   }, [emblaApi, dir]);
+
+  useEffect(() => {
+    console.log("activé");
+
+    if (mode === "home") {
+      if (!projects[selectedIndex].images) {
+        setProjectLink(projects[selectedIndex].website);
+        return;
+      }
+      setProjectLink(`/projects/${projects[selectedIndex].href}`);
+    }
+  }, [mode, selectedIndex, setProjectLink, pathname]);
 
   return (
     <section className="fixed bottom-0 left-0 right-0 z-99999 flex items-center justify-center mb-4">
@@ -118,7 +135,7 @@ const Wheel = () => {
           animate={mode === "home" ? "show" : "hide"}
           transition={{ duration: 0.3, delay: 0.2 }}
         >
-          <WheelCentralButton project={projects[selectedIndex]} />
+          <WheelCentralButton />
           <WheelButtons
             toggleMenu={toggleMenu}
             project={projects[selectedIndex]}

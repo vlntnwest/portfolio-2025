@@ -24,6 +24,7 @@ export default function WheelProvider({ children }) {
     projects: false,
     menu: false,
   });
+  const [projectLink, setProjectLink] = useState("null");
 
   const wheelRef = useRef(null);
   const startAngleRef = useRef(null);
@@ -258,6 +259,8 @@ export default function WheelProvider({ children }) {
         onTouchMove,
         onWheel,
         onTouchStart,
+        projectLink,
+        setProjectLink,
       }}
     >
       {children}
