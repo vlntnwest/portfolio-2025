@@ -1,5 +1,4 @@
 "use client";
-import useWheelControl from "@/hooks/useWheel";
 import useEmblaCarousel from "embla-carousel-react";
 import {
   useEffect,
@@ -22,8 +21,6 @@ export default function CarouselProvider({ children }) {
   });
   const [projectGap, setProjectGap] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const { onWheel } = useWheelControl();
 
   const changeOnClick = useCallback(
     (index) => {
@@ -81,12 +78,6 @@ export default function CarouselProvider({ children }) {
     };
   }, [emblaApi]);
 
-  useEffect(() => {
-    window.addEventListener("wheel", onWheel, { passive: false });
-
-    return () => window.removeEventListener("wheel", onWheel);
-  }, [onWheel]);
-
   return (
     <CarouselContext.Provider
       value={{
@@ -94,6 +85,7 @@ export default function CarouselProvider({ children }) {
         emblaApi,
         projectGap,
         selectedIndex,
+        setSelectedIndex,
         changeOnClick,
       }}
     >

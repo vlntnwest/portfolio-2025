@@ -7,12 +7,12 @@ const Header = () => {
   const baseBlobUrl = process.env.NEXT_PUBLIC_BASE_BLOB_URL;
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-99999 px-4 pt-4">
-      <div className="flex justify-center items-center">
+    <header className="sticky top-0 left-0 right-0 z-9999999 px-4 pt-4 pointer-events-none">
+      <div className="flex justify-center items-center ">
         <div className="flex flex-col items-center ">
           <Link
             href="/"
-            className="rounded-full overflow-hidden bg-linear-to-b from-[#FF3C3C] to-[#5F1616] z-10"
+            className="rounded-full overflow-hidden bg-linear-to-b from-[#FF3C3C] to-[#5F1616] z-10 pointer-events-auto"
           >
             <Image
               src={`${baseBlobUrl}/memoji/memoji-classic.png`}

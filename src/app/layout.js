@@ -2,7 +2,6 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import CarouselProvider from "@/contexts/CarouselContext";
 import Providers from "@/contexts/Providers";
-import Header from "@/components/Header/Header";
 import Wheel from "@/components/Wheel/Wheel";
 
 const poppins = Poppins({
@@ -23,10 +22,7 @@ export default function RootLayout({ children }) {
       >
         <CarouselProvider>
           <Providers>
-            <main className="flex flex-col h-auto">
-              <Header />
-              {children}
-            </main>
+            <main className="flex flex-col h-auto">{children}</main>
             <Wheel />
           </Providers>
         </CarouselProvider>

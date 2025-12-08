@@ -13,17 +13,16 @@ import menus from "@/lib/menus.json";
 import projects from "@/lib/projects.json";
 import MenuLink from "../ui/buttons/MenuLink";
 import IconMenuInner from "../ui/buttons/IconMenuInner";
-import useWheelControl from "@/hooks/useWheel";
 import { useCarouselContext } from "@/contexts/CarouselContext";
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const wheelVariants = {
-  initial: { opacity: 0 },
+  initial: { opacity: 0, transition: { duration: 0 } },
   home: {
     width: "200px",
     height: "200px",
     borderRadius: "9999px",
-
     opacity: 1,
     translateY: "0px",
     transition: { duration: 0.4, ease: "easeInOut" },
@@ -51,12 +50,11 @@ const wheelContentVariants = {
 };
 
 const Wheel = () => {
-  const { mode, toggleMenu, prevProject, nextProject } = useWheelContext();
-  const { selectedIndex } = useCarouselContext();
-
-  const shouldReduceMotion = useReducedMotion();
-
   const {
+    mode,
+    toggleMenu,
+    prevProject,
+    nextProject,
     wheelRef,
     position,
     onMouseMove,
@@ -64,12 +62,19 @@ const Wheel = () => {
     onTouchMove,
     onTouchStart,
     dir,
-  } = useWheelControl();
+    setProjectLink,
+  } = useWheelContext();
+  const { selectedIndex, setSelectedIndex, emblaApi } = useCarouselContext();
+  const pathname = usePathname();
 
-  const { emblaApi } = useCarouselContext();
+  const shouldReduceMotion = useReducedMotion();
 
-  const prevHref = prevProject ? prevProject.href : "";
-  const nextHref = nextProject ? nextProject.href : "";
+  const prevHref = prevProject?.images
+    ? `/projects/${prevProject.href}`
+    : prevProject?.website;
+  const nextHref = nextProject?.images
+    ? `/projects/${nextProject.href}`
+    : nextProject?.website;
 
   useEffect(() => {
     if (!emblaApi || dir === undefined) return;
@@ -80,6 +85,18 @@ const Wheel = () => {
       emblaApi.scrollPrev();
     }
   }, [emblaApi, dir]);
+
+  useEffect(() => {
+    console.log("activé");
+
+    if (mode === "home") {
+      if (!projects[selectedIndex].images) {
+        setProjectLink(projects[selectedIndex].website);
+        return;
+      }
+      setProjectLink(`/projects/${projects[selectedIndex].href}`);
+    }
+  }, [mode, selectedIndex, setProjectLink, pathname]);
 
   return (
     <section className="fixed bottom-0 left-0 right-0 z-99999 flex items-center justify-center mb-4">
@@ -118,7 +135,7 @@ const Wheel = () => {
           animate={mode === "home" ? "show" : "hide"}
           transition={{ duration: 0.3, delay: 0.2 }}
         >
-          <WheelCentralButton project={projects[selectedIndex]} />
+          <WheelCentralButton />
           <WheelButtons
             toggleMenu={toggleMenu}
             project={projects[selectedIndex]}
