@@ -1,5 +1,4 @@
 [
   { "id": 1, "label": "Home", "href": "/" },
-  { "id": 2, "label": "Playground", "href": "/playground" },
   { "id": 3, "label": "Contact", "href": "mailto:valentin@westermeyer.fr" }
 ]
