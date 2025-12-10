@@ -96,6 +96,8 @@ const Wheel = () => {
     }
   }, [mode, selectedIndex, setProjectLink, pathname]);
 
+  if (!mode) return null;
+
   return (
     <section className="fixed bottom-0 left-0 right-0 z-99999 flex items-center justify-center mb-4">
       <WheelMenu />
@@ -108,7 +110,7 @@ const Wheel = () => {
       <motion.div
         className="relative background-dark-gradient flex items-center justify-center overflow-hidden select-none touch-none z-10"
         variants={wheelVariants}
-        initial="initial"
+        initial={mode}
         animate={mode}
         style={{
           width: "200px",

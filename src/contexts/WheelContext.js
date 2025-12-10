@@ -18,7 +18,7 @@ export function useWheelContext() {
 }
 
 export default function WheelProvider({ children }) {
-  const [mode, setMode] = useState("home");
+  const [mode, setMode] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [iconStates, setIconStates] = useState({
     projects: false,
