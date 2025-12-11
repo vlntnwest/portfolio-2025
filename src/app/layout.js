@@ -1,5 +1,6 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header/Header";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -17,7 +18,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${poppins.className} antialiased touch-none overflow-x-hidden scrollbar-hidden`}
       >
-        <main className="flex flex-col h-auto">{children}</main>
+        <main className="flex flex-col h-screen">
+          <Header />
+          {children}
+        </main>
       </body>
     </html>
   );

@@ -5,13 +5,12 @@ import React from "react";
 
 const layout = ({ children }) => {
   return (
-    <div>
-      <CarouselProvider>
-        <Providers>
-          {children} <Wheel />
-        </Providers>
-      </CarouselProvider>
-    </div>
+    <CarouselProvider>
+      <Providers>
+        {children}
+        <Wheel />
+      </Providers>
+    </CarouselProvider>
   );
 };
 
