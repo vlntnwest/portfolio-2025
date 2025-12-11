@@ -5,7 +5,7 @@ import Pointer from "./Pointer";
 
 const CanvasScreen = () => {
   return (
-    <Canvas camera={{ position: [0, 0, 5], fov: 70 }}>
+    <Canvas camera={{ position: [0, 0, 10], fov: 90, near: 0.1, far: 300 }}>
       <Scene />
       <Pointer />
     </Canvas>

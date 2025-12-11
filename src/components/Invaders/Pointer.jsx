@@ -17,19 +17,19 @@ const Pointer = () => {
     <group ref={ref}>
       {/* x axis */}
       <Line
-        color="black" // Default
+        color="black"
         lineWidth={3}
         points={[
-          [-0.15, 0, 0],
-          [-0.05, 0, 0],
+          [-0.5, 0, 0],
+          [-0.25, 0, 0],
         ]}
       />
       <Line
         color="black"
         lineWidth={3}
         points={[
-          [0.15, 0, 0],
-          [0.05, 0, 0],
+          [0.5, 0, 0],
+          [0.25, 0, 0],
         ]}
       />
 
@@ -38,16 +38,16 @@ const Pointer = () => {
         color="black"
         lineWidth={3}
         points={[
-          [0, -0.15, 0],
-          [0, -0.05, 0],
+          [0, -0.5, 0],
+          [0, -0.25, 0],
         ]}
       />
       <Line
         color="black"
         lineWidth={3}
         points={[
-          [0, 0.15, 0],
-          [0, 0.05, 0],
+          [0, 0.5, 0],
+          [0, 0.25, 0],
         ]}
       />
     </group>
