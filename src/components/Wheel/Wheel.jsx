@@ -67,6 +67,8 @@ const Wheel = () => {
   const { selectedIndex, emblaApi } = useCarouselContext();
   const pathname = usePathname();
 
+  const isHome = pathname === "/";
+
   const shouldReduceMotion = useReducedMotion();
 
   const prevHref = prevProject?.images
@@ -100,7 +102,7 @@ const Wheel = () => {
 
   return (
     <motion.section
-      initial={{ y: 250 }}
+      initial={isHome ? { y: 250 } : { y: 0 }}
       animate={{
         y: 0,
         transition: {
