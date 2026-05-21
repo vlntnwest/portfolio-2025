@@ -5,6 +5,9 @@ import projects from "@/lib/projects.json";
 import { useRef } from "react";
 import { useInfiniteScroll } from "@/hooks/useInfiniteClone";
 
+const BLUR_PLACEHOLDER =
+  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxIDEiPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNlNWU1ZTUiLz48L3N2Zz4=";
+
 const Content = () => {
   const { name } = useParams();
   const baseBlopUrl = process.env.NEXT_PUBLIC_BASE_BLOB_URL;
@@ -25,7 +28,11 @@ const Content = () => {
                   alt={image.alt}
                   width={image.width}
                   height={image.height}
-                  className=" aspect-auto w-full max-w-[calc(100%-24px)] h-auto max-h-[80vh] object-contain sm:max-w-[70vw] mx-4 mb-4 mx-auto"
+                  priority={index < 4}
+                  placeholder="blur"
+                  blurDataURL={BLUR_PLACEHOLDER}
+                  style={{ aspectRatio: `${image.width} / ${image.height}` }}
+                  className=" w-full max-w-[calc(100%-24px)] h-auto max-h-[80vh] object-contain sm:max-w-[70vw] mx-4 mb-4 mx-auto"
                 />
               ))}
             </div>
