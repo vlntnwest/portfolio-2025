@@ -9,6 +9,7 @@ const inter = Inter({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://www.vlntn.fr"),
   title: {
     default:
       "Valentin Westermeyer | Développeur Next.js et WordPress à Strasbourg",

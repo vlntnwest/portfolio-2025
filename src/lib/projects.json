@@ -1,61 +1,6 @@
 [
   {
     "id": 1,
-    "label": "Inari Strasbourg",
-    "href": "inari",
-    "cover": "inari-cover",
-    "description": "Site e-commerce développé sur WordPress avec WooCommerce et un thème sur mesure, pensé pour la performance et l’expérience utilisateur. Design soigné enrichi d’animations fluides avec GSAP et ScrollTrigger, et structure optimisée pour le SEO et la maintenabilité.",
-    "tag": "E-commerce",
-    "type": "Site web",
-    "technologies": "WordPress et Woocommerce",
-    "website": "https://www.inarimod.fr",
-    "images": [
-      {
-        "url": "Inari_Home_Desktop.webp",
-        "alt": "Mockup Inari - Accueil",
-        "width": 1920,
-        "height": 1080
-      },
-      {
-        "url": "Inari_Home_Mobile.webp",
-        "alt": "Mockup iPhone Inari - Accueil",
-        "width": 1920,
-        "height": 1920
-      },
-      {
-        "url": "Inari_Home_Products_Desktop.webp",
-        "alt": "Mockup Inari - Produits",
-        "width": 1920,
-        "height": 1440
-      },
-      {
-        "url": "Inari_Menu_Mobile.webp",
-        "alt": "Mockup Inari - Menu",
-        "width": 1280,
-        "height": 1920
-      },
-      {
-        "url": "Inari_Menu_Desktop.webp",
-        "alt": "Mockup Inari - Menu",
-        "width": 1920,
-        "height": 1080
-      },
-      {
-        "url": "Inari_Product_Mobile.webp",
-        "alt": "Mockup iPhone Inari - Produit",
-        "width": 1920,
-        "height": 1440
-      },
-      {
-        "url": "Inari_Products_Mobile.webp",
-        "alt": "Mockup iPhone Inari - Produits",
-        "width": 1536,
-        "height": 1921
-      }
-    ]
-  },
-  {
-    "id": 2,
     "label": "Cabinet dentaire de la Paix",
     "href": "cabinet-dentaire-de-la-paix",
     "cover": "paix-cover",
@@ -116,7 +61,7 @@
     ]
   },
   {
-    "id": 3,
+    "id": 2,
     "label": "Pokey Bar",
     "href": "pokey-bar",
     "cover": "pokey-cover",
@@ -195,7 +140,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": 3,
     "label": "22point5",
     "href": "22point5",
     "cover": "22point5-cover",
@@ -250,7 +195,7 @@
     ]
   },
   {
-    "id": 5,
+    "id": 4,
     "label": "BCI Construction",
     "href": "bci",
     "cover": "bci-cover",
@@ -281,7 +226,7 @@
     ]
   },
   {
-    "id": 6,
+    "id": 5,
     "label": "Immobilière des XV",
     "href": "immobiliere-des-xv",
     "cover": "xv-cover",
@@ -332,6 +277,61 @@
         "alt": "Mockup Immobilière des XV - Page de vente",
         "width": 1920,
         "height": 1080
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "label": "Inari Strasbourg",
+    "href": "inari",
+    "cover": "inari-cover",
+    "description": "Site e-commerce développé sur WordPress avec WooCommerce et un thème sur mesure, pensé pour la performance et l’expérience utilisateur. Design soigné enrichi d’animations fluides avec GSAP et ScrollTrigger, et structure optimisée pour le SEO et la maintenabilité.",
+    "tag": "E-commerce",
+    "type": "Site web",
+    "technologies": "WordPress et Woocommerce",
+    "website": "https://www.inarimod.fr",
+    "images": [
+      {
+        "url": "Inari_Home_Desktop.webp",
+        "alt": "Mockup Inari - Accueil",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "url": "Inari_Home_Mobile.webp",
+        "alt": "Mockup iPhone Inari - Accueil",
+        "width": 1920,
+        "height": 1920
+      },
+      {
+        "url": "Inari_Home_Products_Desktop.webp",
+        "alt": "Mockup Inari - Produits",
+        "width": 1920,
+        "height": 1440
+      },
+      {
+        "url": "Inari_Menu_Mobile.webp",
+        "alt": "Mockup Inari - Menu",
+        "width": 1280,
+        "height": 1920
+      },
+      {
+        "url": "Inari_Menu_Desktop.webp",
+        "alt": "Mockup Inari - Menu",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "url": "Inari_Product_Mobile.webp",
+        "alt": "Mockup iPhone Inari - Produit",
+        "width": 1920,
+        "height": 1440
+      },
+      {
+        "url": "Inari_Products_Mobile.webp",
+        "alt": "Mockup iPhone Inari - Produits",
+        "width": 1536,
+        "height": 1921
       }
     ]
   }

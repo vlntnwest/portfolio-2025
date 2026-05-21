@@ -15,7 +15,6 @@ const Content = () => {
   return (
     <>
       <section className="overflow-y-auto">
-        <h1 className="sr-only">{name}</h1>
         <div ref={containerRef}>
           <div className="h-auto">
             <div>
