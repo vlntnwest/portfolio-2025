@@ -18,7 +18,6 @@ export function useWheelContext() {
 }
 
 export default function WheelProvider({ children }) {
-  const [mode, setMode] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [iconStates, setIconStates] = useState({
     projects: false,
@@ -156,6 +155,10 @@ export default function WheelProvider({ children }) {
   const params = useParams();
   const { name } = params || {};
 
+  // Dérivé du pathname pendant le rendu (et non dans un effet) pour que la
+  // molette, et donc le titre du projet, soient présents dès le HTML serveur.
+  const mode = pathname.includes("/projects/") ? "projects" : "home";
+
   const { currentProject, prevProject, nextProject } = useMemo(() => {
     if (!name)
       return { currentProject: null, prevProject: null, nextProject: null };
@@ -175,25 +178,11 @@ export default function WheelProvider({ children }) {
   }, [name]);
 
   useEffect(() => {
-    if (pathname.includes("/projects/")) {
-      setMode("projects");
-      // } else if (pathname.includes("/playground")) {
-      //   setMode("initial");
-    } else {
-      setMode("home");
-    }
-  }, [pathname]);
-
-  useEffect(() => {
     setIconStates({
       projects: false,
       menu: false,
     });
   }, [pathname]);
-
-  const changeMode = useCallback((newMode) => {
-    setMode(newMode);
-  }, []);
 
   const toggleMenu = useCallback((e) => {
     e?.stopPropagation();
@@ -241,7 +230,6 @@ export default function WheelProvider({ children }) {
     <WheelContext.Provider
       value={{
         mode,
-        changeMode,
         isMenuOpen,
         toggleMenu,
         toggleProjectMenu,
