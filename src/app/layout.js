@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header/Header";
 import { BASE_BLOB_URL, SITE_URL } from "@/lib/site";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 
 const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -97,6 +98,11 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
+        />
+        <Script
+          defer
+          src="https://stats.vlntn.fr/script.js"
+          data-website-id="4e6b8aa7-dfd4-48f9-b01b-3331094b12cb"
         />
         <main className="flex flex-col h-auto">
           <Header />
